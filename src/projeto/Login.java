@@ -5,7 +5,7 @@
  */
 package projeto;
 
-import conexao.Conectar;
+import utils.Conectar;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -14,9 +14,11 @@ import javax.swing.JOptionPane;
 import static sun.security.jgss.GSSUtil.login;
 import java.sql.ResultSet;
 import projeto.Principal;
-
-
-public class Login extends javax.swing.JFrame {
+import static sun.security.jgss.GSSUtil.login;
+/**
+ *
+ * @author Itach
+ */ public class Login extends javax.swing.JFrame {
 
     private final Conectar objCon;
     private Object campo;
@@ -31,13 +33,7 @@ public class Login extends javax.swing.JFrame {
         objCon = new Conectar();
 
     }
-
-    private void initComponents() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-/**
- *
- * @author Itach
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,93 +44,83 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        campo = new javax.swing.JTextField();
-        pass = new javax.swing.JPasswordField();
+        pass = new javax.swing.JLabel();
+        campo_user = new javax.swing.JTextField();
+        campo_pass = new javax.swing.JPasswordField();
+        login = new javax.swing.JButton();
+        sair = new javax.swing.JButton();
+        limpar = new javax.swing.JButton();
+        user = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Login");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        pass.setText("Senha:");
+        getContentPane().add(pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 40, -1));
+
+        campo_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                campo_userActionPerformed(evt);
             }
         });
+        getContentPane().add(campo_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 60, 130, -1));
 
-        campo.addActionListener(new java.awt.event.ActionListener() {
+        campo_pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoActionPerformed(evt);
+                campo_passActionPerformed(evt);
             }
         });
+        getContentPane().add(campo_pass, new org.netbeans.lib.awtextra.AbsoluteConstraints(118, 90, 130, -1));
 
-        jLabel1.setText("Login:");
+        login.setText("Login");
+        login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginActionPerformed(evt);
+            }
+        });
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 105, -1));
 
-        jLabel2.setText("Senha:");
+        sair.setText("Sair");
+        sair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 93, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1)
-                    .addComponent(campo, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                    .addComponent(pass))
-                .addContainerGap(129, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(campo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addComponent(jButton1)
-                .addGap(67, 67, 67))
-        );
+        limpar.setText("Limpar");
+        limpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparActionPerformed(evt);
+            }
+        });
+        getContentPane().add(limpar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        user.setText("Usuário:");
+        getContentPane().add(user, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 40, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Itach\\OneDrive\\Área de Trabalho\\ipoint.png")); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 370, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void campo_passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_passActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campo_passActionPerformed
+
+    private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         try {
             objCon.openConnection();
-            String SQL = "select * from usuario where nome = 'Felipe' and senha = 'admin'";
+            String SQL = "select * from admin where nome = 'admin' and senha = 'admin'";
             PreparedStatement ps = objCon.con.prepareStatement(SQL);
             objCon.rs = ps.executeQuery();
             objCon.rs.next();
 
-            if (campo.getText().equals(objCon.rs.getString("nome")) && pass.getText().equals(objCon.rs.getString("senha"))) {
-                JOptionPane.showMessageDialog(null, "Bem vindo ao Zona Livre!");
-                dashboard tela = new dashboard();
+            if (campo_user.getText().equals(objCon.rs.getString("nome")) && campo_pass.getText().equals(objCon.rs.getString("senha"))) {
+                JOptionPane.showMessageDialog(null, "Bem vindo ao iPoint!");
+                Principal tela = new Principal();
                 tela.setVisible(true);
                 dispose();
             } else {
@@ -144,20 +130,65 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_loginActionPerformed
 
-    }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairActionPerformed
+        dispose();
+    }//GEN-LAST:event_sairActionPerformed
 
-    private void campoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoActionPerformed
+    private void limparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparActionPerformed
+        campo_user.setText("");
+        campo_pass.setText("");
+    }//GEN-LAST:event_limparActionPerformed
+
+    private void campo_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campo_userActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoActionPerformed
+    }//GEN-LAST:event_campo_userActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField campo;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPasswordField campo_pass;
+    private javax.swing.JTextField campo_user;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField pass;
+    private javax.swing.JButton limpar;
+    private javax.swing.JButton login;
+    private javax.swing.JLabel pass;
+    private javax.swing.JButton sair;
+    private javax.swing.JLabel user;
     // End of variables declaration//GEN-END:variables
 }

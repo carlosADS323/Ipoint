@@ -20,6 +20,10 @@ public class Departamento {
         ListaFunc = new ArrayList();
     }
 
+    Departamento(double cod, String text) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getCodigo() {
         return Codigo;
     }

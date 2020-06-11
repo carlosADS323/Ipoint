@@ -10,7 +10,7 @@ public class Conexao {
     private static final String Driver = "com.mysql.jdbc.Driver";
     private static final String user = "root";
     private static final String password = "";
-    private static final String url = "jdbc:mysql://localhost:3306/Dados";
+    private static final String url = "jdbc:mysql://localhost:3306/dados";
 
     public static Connection getConexao() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

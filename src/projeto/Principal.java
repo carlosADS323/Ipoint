@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,7 +20,7 @@ public class Principal extends javax.swing.JFrame {
     ArrayList<Departamento> ListaDep;
     
         public void LoadTableDep(){
-        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"Código","Nome","Cargo"},0);
+        DefaultTableModel modelo = new DefaultTableModel(new Object[]{"CPF/CNPJ","Nome"},0);
             
             
         for(int i=0;i<ListaDep.size();i++){
@@ -30,7 +31,7 @@ public class Principal extends javax.swing.JFrame {
         }
         
         tbl_dep_dpts.setModel(modelo);
-        tbl_dep_dpts.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tbl_dep_dpts.getColumnModel().getColumn(0).setPreferredWidth(200);
         tbl_dep_dpts.getColumnModel().getColumn(1).setPreferredWidth(200);
     }
     
@@ -44,7 +45,6 @@ public class Principal extends javax.swing.JFrame {
         btn_dep_salvar.setEnabled(false);
         btn_dep_cancelar.setEnabled(false);
         c_dep_codigo.setEnabled(false);
-        c_dep_cargo.setEnabled(false);
         c_dep_nome.setEnabled(false);
     }
 
@@ -66,42 +66,11 @@ public class Principal extends javax.swing.JFrame {
         c_dep_codigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         c_dep_nome = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        c_dep_cargo = new javax.swing.JTextField();
         btn_dep_salvar = new javax.swing.JButton();
         btn_dep_cancelar = new javax.swing.JButton();
         btn_dep_novo = new javax.swing.JButton();
         btn_dep_editar = new javax.swing.JButton();
         btn_dep_excluir = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        cnpj_mask = new javax.swing.JLabel();
-        cnpj_noMask = new javax.swing.JLabel();
-        c_cnpj = new javax.swing.JFormattedTextField();
-        c_data = new javax.swing.JFormattedTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        data_barras = new javax.swing.JLabel();
-        data_tracos = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cb_tipoDocumento = new javax.swing.JComboBox();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        c_documento = new javax.swing.JFormattedTextField();
-        btn_validar = new javax.swing.JButton();
-        doc_noMask = new javax.swing.JLabel();
-        c_cpf = new javax.swing.JFormattedTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        doc_mask = new javax.swing.JLabel();
-        cpf_mask = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        cpf_noMask = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -110,14 +79,14 @@ public class Principal extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Cargo"
+                "CPF/CNPJ", "Nome"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,12 +101,11 @@ public class Principal extends javax.swing.JFrame {
         if (tbl_dep_dpts.getColumnModel().getColumnCount() > 0) {
             tbl_dep_dpts.getColumnModel().getColumn(0).setPreferredWidth(50);
             tbl_dep_dpts.getColumnModel().getColumn(1).setPreferredWidth(200);
-            tbl_dep_dpts.getColumnModel().getColumn(2).setPreferredWidth(100);
         }
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Departamento"));
 
-        jLabel1.setText("Código:");
+        jLabel1.setText("CPF/CNPJ");
 
         c_dep_codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +114,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         jLabel2.setText("Nome:");
-
-        jLabel10.setText("Cargo:");
-
-        c_dep_cargo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_dep_cargoActionPerformed(evt);
-            }
-        });
 
         btn_dep_salvar.setText("Salvar");
         btn_dep_salvar.addActionListener(new java.awt.event.ActionListener() {
@@ -180,21 +140,17 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(c_dep_nome)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(c_dep_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(c_dep_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(c_dep_nome))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(btn_dep_salvar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_dep_cancelar)
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +158,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(c_dep_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(c_dep_cargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(c_dep_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -237,16 +191,20 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_dep_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_dep_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_dep_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btn_dep_novo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_dep_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_dep_excluir, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,221 +217,12 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(btn_dep_novo)
                     .addComponent(btn_dep_editar)
                     .addComponent(btn_dep_excluir))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Departamentos", jPanel1);
-
-        jLabel7.setText("Sem Máscara:");
-
-        cnpj_mask.setText("   ");
-
-        cnpj_noMask.setText("   ");
-
-        try {
-            c_cnpj.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        c_cnpj.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_cnpjActionPerformed(evt);
-            }
-        });
-
-        try {
-            c_data.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel8.setText("Barras:");
-
-        jLabel9.setText("Traços:");
-
-        data_barras.setText("   ");
-
-        data_tracos.setText("   ");
-
-        jLabel11.setText("Tipo Documento:");
-
-        jLabel3.setText("CPF:");
-
-        cb_tipoDocumento.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Selecione", "CPF", "CNPJ" }));
-        cb_tipoDocumento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cb_tipoDocumentoActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("CNPJ:");
-
-        jLabel12.setText("Documento:");
-
-        jLabel5.setText("Data:");
-
-        c_documento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                c_documentoActionPerformed(evt);
-            }
-        });
-
-        btn_validar.setText("Validar");
-        btn_validar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_validarActionPerformed(evt);
-            }
-        });
-
-        doc_noMask.setText("   ");
-
-        try {
-            c_cpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jLabel6.setText("Com máscara:");
-
-        jLabel13.setText("Com máscara:");
-
-        jLabel14.setText("Sem Máscara:");
-
-        jLabel15.setText("Sem Máscara:");
-
-        doc_mask.setText("   ");
-
-        cpf_mask.setText("   ");
-
-        cpf_noMask.setText("   ");
-
-        jLabel16.setText("Com máscara:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(c_data, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(c_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel16))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(data_barras, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                                .addComponent(jLabel9)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(data_tracos, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(cpf_mask, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jLabel15))
-                                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                                        .addComponent(cnpj_mask, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jLabel7)))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(cpf_noMask, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                                    .addComponent(cnpj_noMask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(33, 33, 33)
-                                        .addComponent(btn_validar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel12)
-                                    .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cb_tipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(c_documento, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(doc_mask, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(doc_noMask, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE))))
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addContainerGap())))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cpf_mask)
-                    .addComponent(cpf_noMask))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(c_cnpj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cnpj_mask)
-                    .addComponent(cnpj_noMask))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(c_data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(data_barras)
-                    .addComponent(data_tracos))
-                .addGap(18, 83, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cb_tipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(c_documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(doc_mask)
-                    .addComponent(doc_noMask))
-                .addGap(8, 8, 8)
-                .addComponent(btn_validar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Funcionários", jPanel2);
+        jTabbedPane1.addTab("Funcionarios", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -495,99 +244,25 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_validarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_validarActionPerformed
-        String cpf = c_cpf.getText();
-        String cnpj = c_cnpj.getText();
-        String data = c_data.getText();
-        String documento = c_documento.getText();
-
-        /*
-        CPF pf = new CPF(cpf);
-        if(pf.isCPF()){
-            cpf_mask.setText(pf.getCPF(true));
-            cpf_noMask.setText(pf.getCPF(false));
+    private void btn_dep_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dep_excluirActionPerformed
+        DefaultTableModel minhaTabela = (DefaultTableModel) tbl_dep_dpts.getModel();
+        if(tbl_dep_dpts.getSelectedRow() >= 0){
+            minhaTabela.removeRow(tbl_dep_dpts.getSelectedRow());
+            tbl_dep_dpts.setModel(minhaTabela);
         }else{
-            JOptionPane.showMessageDialog(rootPane,"CPF inválido!");
+            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela");
         }
-
-        CNPJ pj = new CNPJ(cnpj);
-        if(pj.isCNPJ()){
-            cnpj_mask.setText(pj.getCNPJ(true));
-            cnpj_noMask.setText(pj.getCNPJ(false));
-        }else{
-            JOptionPane.showMessageDialog(rootPane,"CNPJ inválido!");
-        }
-
-        //yyyy-mm-dd hh:mm:ss
-        Data d = new Data(data+" "+hora+":00",Data.BarraComHora);
-
-        data_barras.setText(d.getDataHoraString());
-        data_tracos.setText(d.getTimestamp().toString());
-
-        Data Hoje = new Data();
-
-        if(Hoje.getTimestamp().getTime() > d.getTimestamp().getTime()){
-            JOptionPane.showMessageDialog(rootPane, "Data informada já passou!");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "Data informada ainda está por vir!");
-        }
-        */
-
-        if(cb_tipoDocumento.getSelectedIndex()==1){
-            CPF pf = new CPF(documento);
-            if(pf.isCPF()){
-                doc_mask.setText(pf.getCPF(true));
-                doc_noMask.setText(pf.getCPF(false));
-            }else{
-                JOptionPane.showMessageDialog(rootPane,"CPF inválido!");
-            }
-        }else{
-            CNPJ pj = new CNPJ(documento);
-            if(pj.isCNPJ()){
-                doc_mask.setText(pj.getCNPJ(true));
-                doc_noMask.setText(pj.getCNPJ(false));
-            }else{
-                JOptionPane.showMessageDialog(rootPane,"CNPJ inválido!");
-            }
-        }
-    }//GEN-LAST:event_btn_validarActionPerformed
-
-    private void c_documentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_documentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_documentoActionPerformed
-
-    private void cb_tipoDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cb_tipoDocumentoActionPerformed
-        int tipoDoc = cb_tipoDocumento.getSelectedIndex();
-        c_documento.setValue(null);
-        switch(tipoDoc){
-            case 0:
-            JOptionPane.showMessageDialog(rootPane,"Selecione um tipo de documento!");
-            break;
-            case 1:
-            c_documento.setFormatterFactory(CPF.getFormat());
-            break;
-            case 2:
-            c_documento.setFormatterFactory(CNPJ.getFormat());
-            break;
-        }
-    }//GEN-LAST:event_cb_tipoDocumentoActionPerformed
-
-    private void c_cnpjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_cnpjActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_cnpjActionPerformed
+    }//GEN-LAST:event_btn_dep_excluirActionPerformed
 
     private void btn_dep_novoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dep_novoActionPerformed
         c_dep_codigo.setText("");
-        c_dep_cargo.setText("");
         c_dep_nome.setText("");
-        
 
         btn_dep_salvar.setEnabled(true);
         btn_dep_cancelar.setEnabled(true);
         c_dep_codigo.setEnabled(true);
-        c_dep_cargo.setEnabled(true);
         c_dep_nome.setEnabled(true);
-        
+
     }//GEN-LAST:event_btn_dep_novoActionPerformed
 
     private void btn_dep_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dep_cancelarActionPerformed
@@ -598,7 +273,7 @@ public class Principal extends javax.swing.JFrame {
     private void btn_dep_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dep_salvarActionPerformed
         int cod = Integer.parseInt(c_dep_codigo.getText());
         Departamento D = new Departamento(cod, c_dep_nome.getText());
-        Departamento E = new Departamento(cod, c_dep_cargo.getText());
+        
 
         ListaDep.add(D);
         LoadTableDep();
@@ -608,54 +283,10 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_c_dep_codigoActionPerformed
 
-    private void c_dep_cargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_dep_cargoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_c_dep_cargoActionPerformed
-
-    private void btn_dep_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_dep_excluirActionPerformed
-         DefaultTableModel minhaTabela = (DefaultTableModel) tbl_dep_dpts.getModel();
-        if(tbl_dep_dpts.getSelectedRow() >= 0){
-            minhaTabela.removeRow(tbl_dep_dpts.getSelectedRow());
-            tbl_dep_dpts.setModel(minhaTabela);
-        }else{
-            JOptionPane.showMessageDialog(null, "Selecione uma linha da tabela");
-        }
-    }//GEN-LAST:event_btn_dep_excluirActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
-    }
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_dep_cancelar;
@@ -663,44 +294,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_dep_excluir;
     private javax.swing.JButton btn_dep_novo;
     private javax.swing.JButton btn_dep_salvar;
-    private javax.swing.JButton btn_validar;
-    private javax.swing.JFormattedTextField c_cnpj;
-    private javax.swing.JFormattedTextField c_cpf;
-    private javax.swing.JFormattedTextField c_data;
-    private javax.swing.JTextField c_dep_cargo;
     private javax.swing.JTextField c_dep_codigo;
     private javax.swing.JTextField c_dep_nome;
-    private javax.swing.JFormattedTextField c_documento;
-    private javax.swing.JComboBox cb_tipoDocumento;
-    private javax.swing.JLabel cnpj_mask;
-    private javax.swing.JLabel cnpj_noMask;
-    private javax.swing.JLabel cpf_mask;
-    private javax.swing.JLabel cpf_noMask;
-    private javax.swing.JLabel data_barras;
-    private javax.swing.JLabel data_tracos;
-    private javax.swing.JLabel doc_mask;
-    private javax.swing.JLabel doc_noMask;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable tbl_dep_dpts;
     // End of variables declaration//GEN-END:variables
@@ -708,6 +308,14 @@ public class Principal extends javax.swing.JFrame {
     static class con {
 
         static PreparedStatement prepareStatement(String SQL) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        static void setString(int i, JTextField jTextField) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        static void executeUpdate() {
             throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
 

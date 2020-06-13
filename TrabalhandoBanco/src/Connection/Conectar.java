@@ -10,7 +10,7 @@ public class Conectar {
     public Statement stmt;
     public ResultSet rs;
 
-    String url = "jdbc:mysql://localhost:3306/dados";
+    String url = "jdbc:mysql://localhost:3306/agenda";
     String user = "root";
     String password = "";
     String driver = "com.mysql.jdbc.Driver";

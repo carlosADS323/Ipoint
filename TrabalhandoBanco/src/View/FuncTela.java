@@ -187,10 +187,10 @@ public class FuncTela extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_tipoDocumentoActionPerformed
 
     private void testeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testeActionPerformed
-
+            
         try {
             objCon.openConnection();
-            String SQL = "select * from funcionarios where cpf = '078.322.033-23'";
+            String SQL = "select * from admin where cpf = '078.322.033-23'";
             PreparedStatement ps = objCon.con.prepareStatement(SQL);
             objCon.rs = ps.executeQuery();
             objCon.rs.next();
@@ -209,14 +209,15 @@ public class FuncTela extends javax.swing.JFrame {
 
     public void DataHora() {
 
-        String SQL = "INSERT INTO registrar (data_hora) VALUES (?)";
+        String SQL = "INSERT INTO registrar (data_hora, cpf) VALUES (?, ?)";
         try {
             PreparedStatement pst = objCon.con.prepareStatement(SQL);
-            pst.setString(1,((JTextField)jdData.getDateEditor().getUiComponent()).getText());         
-            pst.execute();
-            JOptionPane.showMessageDialog(null, "Hora e Data registrada");
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao registrar verifique os dados " + ex.getMessage());
+            pst.setString(1,((JTextField)jdData.getDateEditor().getUiComponent()).getText()); 
+            pst.setString(2,((JTextField)c_documento).getText());
+            int executeUpdate = pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Hora e Data registrada " + executeUpdate);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao registrar verifique os dados " + e.getMessage());
         }
     }
 

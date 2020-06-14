@@ -13,7 +13,7 @@ public class ContatoDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("INSERT INTO tabela(nome, ddd, tel) VALUES (?, ?, ?)");
+            stmt = con.prepareStatement("INSERT INTO tabela(nome, cargo, cpf) VALUES (?, ?, ?)");
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getDdd());
             stmt.setString(3, p.getTel());
@@ -39,8 +39,8 @@ public class ContatoDAO {
                 Contato contato = new Contato();
                 contato.setId(rs.getInt("id"));
                 contato.setNome(rs.getString("nome"));
-                contato.setDdd(rs.getString("ddd"));
-                contato.setTel(rs.getString("tel"));
+                contato.setDdd(rs.getString("cargo"));
+                contato.setTel(rs.getString("cpf"));
                 listaContatos.add(contato);
             }
         } catch (SQLException err) {
@@ -55,7 +55,7 @@ public class ContatoDAO {
         Connection con = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("UPDATE tabela SET nome = ?, ddd = ?, tel = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE tabela SET nome = ?, cargo = ?, cpf = ? WHERE id = ?");
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getDdd());
             stmt.setString(3, p.getTel());

@@ -54,15 +54,11 @@ public class ViewContato extends javax.swing.JFrame {
         nome = new javax.swing.JLabel();
         ddd = new javax.swing.JLabel();
         telefone = new javax.swing.JLabel();
-        nome_pesquisa = new javax.swing.JLabel();
         campo_nome = new javax.swing.JTextField();
         campo_ddd = new javax.swing.JTextField();
         campo_telefone = new javax.swing.JTextField();
-        campo_pesquisa = new javax.swing.JTextField();
         cadastrar = new javax.swing.JButton();
         excluir = new javax.swing.JButton();
-        atualizar = new javax.swing.JButton();
-        buscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabela_contato = new javax.swing.JTable();
 
@@ -70,11 +66,9 @@ public class ViewContato extends javax.swing.JFrame {
 
         nome.setText("Nome");
 
-        ddd.setText("DDD");
+        ddd.setText("Cargo");
 
-        telefone.setText("Telefone");
-
-        nome_pesquisa.setText("Nome para Pesquisar");
+        telefone.setText("CPF");
 
         cadastrar.setText("Cadastrar");
         cadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -90,26 +84,12 @@ public class ViewContato extends javax.swing.JFrame {
             }
         });
 
-        atualizar.setText("Atualizar");
-        atualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atualizarActionPerformed(evt);
-            }
-        });
-
-        buscar.setText("Buscar");
-        buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buscarActionPerformed(evt);
-            }
-        });
-
         tabela_contato.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "NOME", "DDD", "TELEFONE"
+                "ID", "NOME", "CARGO", "CPF"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -140,14 +120,7 @@ public class ViewContato extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(nome_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campo_pesquisa)
-                                .addGap(40, 40, 40)
-                                .addComponent(buscar)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 674, Short.MAX_VALUE)
                         .addGap(58, 58, 58))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,9 +129,7 @@ public class ViewContato extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(cadastrar)
                                     .addGap(18, 18, 18)
-                                    .addComponent(excluir)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(atualizar))
+                                    .addComponent(excluir))
                                 .addComponent(campo_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,16 +157,10 @@ public class ViewContato extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(excluir)
-                    .addComponent(cadastrar)
-                    .addComponent(atualizar))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(buscar)
-                    .addComponent(nome_pesquisa)
-                    .addComponent(campo_pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cadastrar))
+                .addGap(65, 65, 65)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,26 +182,6 @@ public class ViewContato extends javax.swing.JFrame {
             Logger.getLogger(ViewContato.class.getName()).log(Level.SEVERE, null, err);
         }
     }//GEN-LAST:event_cadastrarActionPerformed
-
-    private void atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarActionPerformed
-        if (tabela_contato.getSelectedRow() != -1) {
-            Contato p = new Contato();
-            ContatoDAO dao = new ContatoDAO();
-            p.setNome(campo_nome.getText());
-            p.setDdd(campo_ddd.getText());
-            p.setTel(campo_telefone.getText());
-            p.setId((int) tabela_contato.getValueAt(tabela_contato.getSelectedRow(), 0));
-            dao.update(p);
-            campo_nome.setText("");
-            campo_ddd.setText("");
-            campo_telefone.setText("");
-            try {
-                readJTable();
-            } catch (SQLException err) {
-                Logger.getLogger(ViewContato.class.getName()).log(Level.SEVERE, null, err);
-            }
-        }
-    }//GEN-LAST:event_atualizarActionPerformed
 
     private void tabela_contatoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabela_contatoKeyReleased
         if (tabela_contato.getSelectedRow() != -1) {
@@ -272,14 +217,6 @@ public class ViewContato extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um contato para excluir.");
         }
     }//GEN-LAST:event_excluirActionPerformed
-
-    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        try{
-            readJTableForDesc(buscar.getText());
-        }catch(SQLException err){
-            Logger.getLogger(ViewContato.class.getName()).log(Level.SEVERE, null, err);
-        }
-    }//GEN-LAST:event_buscarActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -306,32 +243,21 @@ public class ViewContato extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ViewContato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ViewContato().setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(ViewContato.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton atualizar;
-    private javax.swing.JButton buscar;
     private javax.swing.JButton cadastrar;
     private javax.swing.JTextField campo_ddd;
     private javax.swing.JTextField campo_nome;
-    private javax.swing.JTextField campo_pesquisa;
     private javax.swing.JTextField campo_telefone;
     private javax.swing.JLabel ddd;
     private javax.swing.JButton excluir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nome;
-    private javax.swing.JLabel nome_pesquisa;
     private javax.swing.JTable tabela_contato;
     private javax.swing.JLabel telefone;
     // End of variables declaration//GEN-END:variables
